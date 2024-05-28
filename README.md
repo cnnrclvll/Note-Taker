@@ -43,4 +43,4 @@ If you have any questions, feel free to reach out:
 - Email:
 	<a href="mailto:cnnrclvll@gmail.com">Connor</a>
 - Github Repo: [boardrepo](https://github.com/cnnrclvll/Note-Taker)
-- Deployed Application: [board](https://surfboard-9ce7206b709e.herokuapp.com/)
+- Deployed Application: [board](https://edx-note-taker-4a4e79620ecf.herokuapp.com/)
