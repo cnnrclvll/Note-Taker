@@ -16,7 +16,7 @@ class Note { // defining the Note class
     return writeFileAsync('db/db.json', JSON.stringify(note)); // write the passed note to the db.json file. pass a JSON.stringify(note) because writeFileAsync excpects a string
   }
 
-  get() { // defining the get() method
+  notesGrab() { // defining the get() method
     return this.read().then((notes) => { // return: this.read() = read database, return promise --(when this.read() completes successfully)--> .then((notes) passes the return of this.read() to the arrow function
       let formatNotes; // initiate a variable
 
@@ -30,7 +30,7 @@ class Note { // defining the Note class
     });
   }
 
-  add(note) { // defining the add(note) method
+  notesAdd(note) { // defining the add(note) method
     const { title, text } = note; // deconstruct the note into title and text
 
     if (!title || !text) { // if there is no value for title or text throw error
@@ -40,15 +40,15 @@ class Note { // defining the Note class
     const newNote = { title, text, id: uuidv1() }; // recreate the note with a unique id
 
     // Get all notes, add the new note, write all the updated notes, return the newNote
-    return this.get() // get all the notes and begin promise chain (below)
+    return this.notesGrab() // get all the notes and begin promise chain (below)
       .then((notes) => [...notes, newNote]) // add the new note to the array, retrieved from getNotes()
       .then((updateNotes) => this.write(updateNotes)) // write the updated array to the db file
       .then(() => newNote); // return the new note
   }
 
-  delete(id) { // defining the delete(id) method. pass this method a note's id
+  notesDel(id) { // defining the delete(id) method. pass this method a note's id
     // Get all notes, remove the note with the given id, write the filtered notes
-    return this.get() // get all the notes and begin promise chain (below)
+    return this.notesGrab() // get all the notes and begin promise chain (below)
       .then((notes) => notes.filter((note) => note.id !== id)) // return all notes that do not have a matching id
       .then((filterNotes) => this.write(filterNotes)); // write the filtered array to the db file
   }
