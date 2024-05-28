@@ -12,7 +12,7 @@ router.get('/notes', (req, res) => { // GET endpoint handler for `/notes`
 
 router.post('/notes', (req, res) => { // POST endpoint handler for `/notes`
   noteHandler
-    .addNote(req.body) // send request body to the addNote method
+    .notesAdd(req.body) // send request body to the addNote method
     .then((note) => res.json(note)) // promise to respond with JSON reponse of that note
     .catch((err) => res.status(500).json(err)); // catch error response 500 + JSON response error
 });
